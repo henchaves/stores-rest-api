@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -10,7 +12,7 @@ from resources.store import Store, StoreList
 from db import db
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///data.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = "henrique"
 api = Api(app)
@@ -21,6 +23,23 @@ def create_tables():
     db.create_all()
 
 jwt = JWT(app, authenticate, identity) # /auth
+
+@app.route("/")
+def index():
+    return(
+        """
+        <h1>Stores API using Flask</h1>
+        <h3>Endpoints:</h3>
+        <ul>
+        <li>/items</li>
+        <li>/item/<name></li>
+        <li>/auth</li>
+        <li>/register</li>
+        <li>/store/<name></li>
+        <li>/stores</li>
+        </ul>
+        """
+    )
 
 api.add_resource(Item, "/item/<string:name>")
 api.add_resource(Store, "/store/<string:name>")
