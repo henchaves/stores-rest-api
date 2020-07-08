@@ -28,14 +28,14 @@ jwt = JWT(app, authenticate, identity) # /auth
 def index():
     return(
         """
-        <h1>Stores API using Flask</h1>
+        <h1>Stores API with Flask &amp; FlaskRESTful</h1>
         <h3>Endpoints:</h3>
         <ul>
         <li>/items</li>
-        <li>/item/<name></li>
+        <li>/item/&lt;name&gt;</li>
         <li>/auth</li>
         <li>/register</li>
-        <li>/store/<name></li>
+        <li>/store/&lt;name&gt;</li>
         <li>/stores</li>
         </ul>
         """
