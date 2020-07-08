@@ -29,6 +29,7 @@ def index():
     return(
         """
         <h1>Stores API with Flask &amp; FlaskRESTful</h1>
+        <hr>
         <h3>Endpoints:</h3>
         <ul>
         <li>/items</li>
@@ -38,6 +39,7 @@ def index():
         <li>/store/&lt;name&gt;</li>
         <li>/stores</li>
         </ul>
+        <hr>
         """
     )
 
